@@ -8,18 +8,39 @@ import p3 from "@/assets/p3.jpg";
 import p4 from "@/assets/p4.jpg";
 import p5 from "@/assets/p5.jpg";
 import p6 from "@/assets/p6.jpg";
+import p7 from "@/assets/p7.jpeg";
+import p9 from "@/assets/p9.JPG";
+import p10 from "@/assets/p10.PNG";
+import p11 from "@/assets/p11.JPG";
+import p12 from "@/assets/p12.JPG";
+import p13 from "@/assets/p13.JPG";
+import p14 from "@/assets/p14.JPG";
+import p15 from "@/assets/p15.JPG";
+import p16 from "@/assets/p16.JPG";
+import p17 from "@/assets/p17.JPG";
+import p18 from "@/assets/p18.JPG";
 
 type Item = { src: string; cat: string; title: string };
 const items: Item[] = [
   { src: p1, cat: "Wedding", title: "The Vow" },
-  { src: p3, cat: "Portrait", title: "Golden Silhouette" },
+  { src: p15, cat: "Wedding", title: "The Vow" },
+
+  { src: p11, cat: "Portrait", title: "" },
+  { src: p12, cat: "Portrait", title: "" },
+
   { src: p2, cat: "Pre Wedding", title: "Misty Fields" },
   { src: p5, cat: "Fashion", title: "Noir Editorial" },
+  { src: p9, cat: "Fashion", title: "Movie Shoot" },
+  { src: p10, cat: "Fashion", title: "Movie Shoot" },
+
   { src: p4, cat: "Nature", title: "Alpine Light" },
-  { src: p6, cat: "Events", title: "Chandelier Nights" },
-  { src: p1, cat: "Wedding", title: "First Dance" },
-  { src: p3, cat: "Portrait", title: "Quiet Study" },
-  { src: p5, cat: "Fashion", title: "House of Velvet" },
+  { src: p6, cat: "Events", title: "Nights" },
+  { src: p13, cat: "Events", title: "Shoot" },
+  { src: p14, cat: "Events", title: "Shoot" },
+
+  { src: p7, cat: "Portrait", title: "Quiet Study" },
+  { src: p16, cat: "Portrait", title: "Actor SK" },
+  { src: p17, cat: "Portrait", title: "Actor SK" },
 ];
 
 const cats = ["All", "Wedding", "Pre Wedding", "Portrait", "Nature", "Fashion", "Events"];

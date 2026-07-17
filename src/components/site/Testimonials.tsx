@@ -5,22 +5,22 @@ import { SectionHeader } from "./Reveal";
 
 const items = [
   {
-    name: "Isabella & Marco",
-    role: "Wedding — Lake Como",
+    name: "Arshath & Shafi",
+    role: "Wedding ",
     quote:
-      "Alexandre didn't just photograph our wedding — he preserved the way it felt. Every image is a heirloom. We'll cherish them for generations.",
+      "Poovarasan didn't just photograph our wedding — he preserved the way it felt. Every image is a heirloom. We'll cherish them for generations.",
     rating: 5,
   },
   {
-    name: "Ayesha Malik",
-    role: "Editorial — Vogue India",
+    name: "Ayesha",
+    role: "BirthDay ",
     quote:
       "The most intuitive photographer I've worked with. Cinematic, calm, and endlessly creative. The gallery arrived and I cried.",
     rating: 5,
   },
   {
-    name: "The Nakamura Family",
-    role: "Portrait Session — Kyoto",
+    name: "Yuvaraj",
+    role: "Ear Piercing",
     quote:
       "Warm, patient and quietly brilliant. The photos feel like a scene from a film we didn't know we were living.",
     rating: 5,

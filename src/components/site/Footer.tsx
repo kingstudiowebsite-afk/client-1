@@ -1,4 +1,4 @@
-import { FaInstagram, FaFacebookF, FaYoutube } from "react-icons/fa";
+import { FaInstagram, FaFacebookF, FaYoutube ,FaBehance } from "react-icons/fa";
 
 const links = ["Home", "About", "Portfolio", "Services", "Packages", "Contact"];
 
@@ -8,7 +8,7 @@ export function Footer() {
       <div className="mx-auto grid max-w-7xl gap-10 px-6 md:grid-cols-3">
         <div>
           <span className="font-display text-3xl text-foreground">
-            Lum<span className="text-gold-gradient">ière</span>
+            KING<span className="text-gold-gradient">MEDIA</span>
           </span>
           <p className="mt-4 max-w-sm text-sm text-muted-foreground">
             A luxury photography studio crafting cinematic stories for people who
@@ -30,7 +30,7 @@ export function Footer() {
         <div>
           <p className="mb-4 text-xs uppercase tracking-[0.3em] text-gold">Follow</p>
           <div className="flex gap-3">
-            {[FaInstagram, FaFacebookF, FaYoutube].map((Icon, i) => (
+            {[FaInstagram, FaBehance].map((Icon, i) => (
               <a
                 key={i}
                 href="#"
@@ -43,8 +43,8 @@ export function Footer() {
         </div>
       </div>
       <div className="mx-auto mt-12 flex max-w-7xl flex-col items-center justify-between gap-3 border-t border-border px-6 pt-6 text-xs text-muted-foreground sm:flex-row">
-        <p>© {new Date().getFullYear()} Lumière Studio. All rights reserved.</p>
-        <p>Crafted with obsession in Paris.</p>
+        <p>© {new Date().getFullYear()} KINGMEDIA Studio. All rights reserved.</p>
+        <p>Crafted with obsession in Chennai.</p>
       </div>
     </footer>
   );

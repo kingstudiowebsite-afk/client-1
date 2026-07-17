@@ -4,21 +4,21 @@ import { FiCheck } from "react-icons/fi";
 const tiers = [
   {
     name: "Essence",
-    price: "$1,200",
+    price: "5,000",
     tag: "Basic",
     features: ["4 hours coverage", "1 photographer", "80+ edited photos", "Online gallery", "Personal use license"],
     highlight: false,
   },
   {
     name: "Signature",
-    price: "$2,800",
+    price: "10,000",
     tag: "Premium",
     features: ["8 hours coverage", "2 photographers", "300+ edited photos", "Cinematic highlight film", "Fine-art proof box", "Print release included"],
     highlight: true,
   },
   {
     name: "Heritage",
-    price: "$5,400",
+    price: "20,000",
     tag: "Luxury",
     features: ["Full-day coverage", "Lead + 2 photographers", "600+ edited photos", "Feature film + teaser", "Handcrafted heirloom album", "Drone & second location", "Priority scheduling"],
     highlight: false,

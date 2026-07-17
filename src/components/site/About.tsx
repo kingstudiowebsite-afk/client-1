@@ -1,5 +1,5 @@
 import { Reveal } from "./Reveal";
-import about from "@/assets/about.jpg";
+import about from "@/assets/hero1.png";
 import { FiAward, FiCamera, FiHeart, FiStar } from "react-icons/fi";
 
 const cards = [
@@ -25,7 +25,7 @@ export function About() {
               className="relative aspect-[4/5] w-full rounded-2xl object-cover"
             />
             <div className="absolute -bottom-6 -right-6 rounded-2xl glass px-6 py-4">
-              <p className="text-3xl text-gold-gradient font-display">08+</p>
+              <p className="text-3xl text-gold-gradient font-display">10+</p>
               <p className="text-xs uppercase tracking-widest text-muted-foreground">Years of craft</p>
             </div>
           </div>
@@ -38,14 +38,16 @@ export function About() {
               A quiet obsession with <em className="text-gold-gradient not-italic">light, story</em> and the moments in between.
             </h2>
             <p className="mt-6 text-muted-foreground">
-              I'm Alexandre — a photographer working with couples, brands and families who
-              want more than a photograph. For nearly a decade I've traveled from
-              chapels in Tuscany to rooftops in Tokyo, chasing the honest, in-between
-              seconds that most people miss.
+              I'm  Poovarasan, a photographer with 10
+                  years of experience capturing stories
+                  through my lens. From events to creative
+                  projects, I approach every shoot with
+                  passion, precision, and a drive to exceed
+                  expectations. I thrive under pressure, value
+                  client satisfaction, and constantly push my
+                  creativity to deliver impactful visual results.
             </p>
-            <p className="mt-4 text-muted-foreground">
-              My work has been featured in Vogue, Harper's Bazaar and Condé Nast Traveller.
-            </p>
+            
           </Reveal>
 
           <div className="mt-10 grid grid-cols-2 gap-4">

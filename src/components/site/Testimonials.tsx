@@ -5,7 +5,7 @@ import { SectionHeader } from "./Reveal";
 
 const items = [
   {
-    name: "Arshath & Shafi",
+    name: "Robin & Jeslin",
     role: "Wedding ",
     quote:
       "Poovarasan didn't just photograph our wedding — he preserved the way it felt. Every image is a heirloom. We'll cherish them for generations.",

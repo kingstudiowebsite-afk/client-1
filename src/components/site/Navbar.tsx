@@ -35,7 +35,7 @@ export function Navbar() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6">
         <a href="#home" className="flex items-center gap-2">
           <span className="font-display text-2xl tracking-wide text-foreground">
-            KING<span className="text-gold-gradient">⟶</span>
+            KING <span className="text-gold-gradient">STUDIO</span>
           </span>
         </a>
 

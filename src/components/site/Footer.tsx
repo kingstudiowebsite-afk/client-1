@@ -8,7 +8,7 @@ export function Footer() {
       <div className="mx-auto grid max-w-7xl gap-10 px-6 md:grid-cols-3">
         <div>
           <span className="font-display text-3xl text-foreground">
-            KING<span className="text-gold-gradient">MEDIA</span>
+            KING <span className="text-gold-gradient">STUDIO</span>
           </span>
           <p className="mt-4 max-w-sm text-sm text-muted-foreground">
             A luxury photography studio crafting cinematic stories for people who
@@ -43,7 +43,7 @@ export function Footer() {
         </div>
       </div>
       <div className="mx-auto mt-12 flex max-w-7xl flex-col items-center justify-between gap-3 border-t border-border px-6 pt-6 text-xs text-muted-foreground sm:flex-row">
-        <p>© {new Date().getFullYear()} KINGMEDIA Studio. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} KING STUDIO. All rights reserved.</p>
         <p>Crafted with obsession in Chennai.</p>
       </div>
     </footer>

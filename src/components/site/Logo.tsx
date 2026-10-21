@@ -28,9 +28,11 @@ export function Logo({ tone = "light", className = "" }: LogoProps) {
   const wordClass = tone === "light" ? "text-white/60" : "text-ink-muted";
 
   return (
-    <span className={`flex items-center gap-3 ${className}`}>
-      <KingBadge className="h-8 w-auto" />
-      <span className={`text-[0.72rem] uppercase tracking-[0.42em] ${wordClass}`}>Studio</span>
+    <span className={`flex items-center gap-2.5 ${className}`}>
+      <KingBadge className="h-6 w-auto" />
+      <span className={`text-[1.25rem] font-medium uppercase leading-none tracking-[0.26em] ${wordClass}`}>
+        Studio
+      </span>
     </span>
   );
 }

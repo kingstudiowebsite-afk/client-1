@@ -2,6 +2,8 @@ import { useState } from "react";
 import { FaInstagram, FaBehance } from "react-icons/fa";
 import { FiArrowRight } from "react-icons/fi";
 import { Logo } from "./Logo";
+import { WhatsAppIcon } from "./WhatsAppIcon";
+import { PHONE, WHATSAPP_URL } from "@/lib/contact";
 
 const quickLinks = [
   { label: "Home", href: "#home" },
@@ -66,7 +68,25 @@ export function Footer() {
                   <Icon size={14} />
                 </a>
               ))}
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="WhatsApp"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-white/12 text-white/60 transition hover:border-tan hover:text-tan"
+              >
+                <WhatsAppIcon size={15} />
+              </a>
             </div>
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-4 flex w-fit items-center gap-2.5 text-[13px] text-white/50 transition hover:text-tan"
+            >
+              <WhatsAppIcon size={15} className="text-tan" />
+              {PHONE}
+            </a>
           </div>
 
           {/* quick links */}

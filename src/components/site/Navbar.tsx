@@ -4,6 +4,8 @@ import { HiMenu, HiX } from "react-icons/hi";
 import { FiMapPin, FiPhone, FiMail } from "react-icons/fi";
 import { FaStar } from "react-icons/fa";
 import { Logo } from "./Logo";
+import { WhatsAppIcon } from "./WhatsAppIcon";
+import { ADDRESS, EMAIL, PHONE, PHONE_TEL, WHATSAPP_URL } from "@/lib/contact";
 
 const links = [
   { label: "Home", href: "#home" },
@@ -14,10 +16,6 @@ const links = [
   { label: "Testimonials", href: "#testimonials" },
   { label: "Contact", href: "#contact" },
 ];
-
-const ADDRESS = "No:13/4, Srinivasa Nagar, Koyambedu, Chennai";
-const PHONE = "+91 7358698040";
-const EMAIL = "poovarsanphotography24@gmail.com";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -45,8 +43,17 @@ export function Navbar() {
             <FaStar className="text-tan" size={9} />
           </span>
           <span className="flex items-center gap-6">
-            <a href={`tel:${PHONE.replace(/\s/g, "")}`} className="flex items-center gap-2 transition hover:text-white">
+            <a href={`tel:${PHONE_TEL}`} className="flex items-center gap-2 transition hover:text-white">
               <FiPhone className="text-tan" size={12} />
+              {PHONE}
+            </a>
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-2 transition hover:text-white"
+            >
+              <WhatsAppIcon size={13} className="text-tan" />
               {PHONE}
             </a>
             <a href={`mailto:${EMAIL}`} className="flex items-center gap-2 transition hover:text-white">
@@ -130,8 +137,11 @@ export function Navbar() {
                 Book a Session
               </a>
               <div className="mt-4 flex flex-col gap-1.5 text-[11px] text-white/50">
-                <a href={`tel:${PHONE.replace(/\s/g, "")}`} className="flex items-center gap-2">
+                <a href={`tel:${PHONE_TEL}`} className="flex items-center gap-2">
                   <FiPhone className="text-tan" size={12} /> {PHONE}
+                </a>
+                <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" className="flex items-center gap-2">
+                  <WhatsAppIcon size={12} className="text-tan" /> {PHONE}
                 </a>
                 <a href={`mailto:${EMAIL}`} className="flex items-center gap-2">
                   <FiMail className="text-tan" size={12} /> {EMAIL}

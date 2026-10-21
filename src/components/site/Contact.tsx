@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { Reveal } from "./Reveal";
 import { FiPhone, FiMail, FiMapPin, FiSend } from "react-icons/fi";
-import { FaWhatsapp, FaInstagram, FaBehance } from "react-icons/fa";
+import { FaInstagram, FaBehance } from "react-icons/fa";
+import { WhatsAppIcon } from "./WhatsAppIcon";
+import { PHONE, PHONE_TEL, WHATSAPP_URL } from "@/lib/contact";
 
 export function Contact() {
   const [sent, setSent] = useState(false);
@@ -52,8 +54,14 @@ export function Contact() {
 
           <Reveal className="min-w-0 lg:col-span-2" delay={0.1}>
             <div className="flex h-full min-w-0 flex-col gap-3">
-              <ContactRow icon={FiPhone} label="Call" value="+91 7358698040" href="tel:+917358698040" />
-              <ContactRow icon={FaWhatsapp} label="WhatsApp" value="Chat with us" href="https://wa.me/917358698040" />
+              <ContactRow icon={FiPhone} label="Call" value={PHONE} href={`tel:${PHONE_TEL}`} />
+              <ContactRow
+                icon={WhatsAppIcon}
+                label="WhatsApp"
+                value={PHONE}
+                href={WHATSAPP_URL}
+                external
+              />
               <ContactRow icon={FiMail} label="Email" value="poovarsanphotography24@gmail.com" href="mailto:poovarsanphotography24@gmail.com" />
               <ContactRow icon={FiMapPin} label="Studio" value="No:13/4,Srinivasa Nagar ,Koyambedu,Chennai" href="#map" />
 
@@ -101,10 +109,24 @@ function Input({ label, ...rest }: { label: string } & React.InputHTMLAttributes
   );
 }
 
-function ContactRow({ icon: Icon, label, value, href }: { icon: React.ComponentType<{ size?: number }>; label: string; value: string; href: string }) {
+function ContactRow({
+  icon: Icon,
+  label,
+  value,
+  href,
+  external,
+}: {
+  icon: React.ComponentType<{ size?: number }>;
+  label: string;
+  value: string;
+  href: string;
+  external?: boolean;
+}) {
   return (
     <a
       href={href}
+      target={external ? "_blank" : undefined}
+      rel={external ? "noreferrer" : undefined}
       className="group flex items-center gap-4 border border-white/10 px-5 py-4 transition-colors hover:border-tan/60"
     >
       <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/15 text-tan transition-colors group-hover:bg-tan group-hover:text-ink">

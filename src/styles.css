@@ -78,8 +78,8 @@
     scroll-margin-top: 116px;
   }
   body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
+    background-color: var(--cream);
+    color: var(--ink-fg);
     font-family: var(--font-sans);
   }
   h1, h2, h3, h4 {

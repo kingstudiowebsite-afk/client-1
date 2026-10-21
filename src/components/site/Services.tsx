@@ -1,4 +1,3 @@
-import { Reveal, SectionHeader } from "./Reveal";
 import { FiHeart, FiCamera, FiGift, FiUser, FiBox, FiFilm } from "react-icons/fi";
 import { TbDrone } from "react-icons/tb";
 
@@ -14,25 +13,26 @@ const services = [
 
 export function Services() {
   return (
-    <section id="services" className="relative py-32">
-      <div className="mx-auto max-w-7xl px-6">
-        <SectionHeader
-          eyebrow="What We Offer"
-          title="Services crafted with intention"
-          subtitle="Every project begins with a conversation and ends with a heirloom."
-        />
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {services.map((s, i) => (
-            <Reveal key={s.title} delay={i * 0.05}>
-              <div className="group relative h-full overflow-hidden rounded-2xl border border-border bg-surface/60 p-8 transition duration-500 hover:-translate-y-2 hover:border-gold/50 hover:shadow-[0_20px_60px_-20px_rgba(212,175,55,0.3)]">
-                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent opacity-0 transition group-hover:opacity-100" />
-                <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-full border border-gold/30 text-gold transition group-hover:gold-gradient group-hover:text-background">
-                  <s.icon size={24} />
-                </div>
-                <h3 className="font-display text-2xl text-foreground">{s.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{s.desc}</p>
-              </div>
-            </Reveal>
+    <section id="services" className="relative z-20 -mt-14 pb-24 sm:-mt-20 sm:pb-28">
+      <div className="mx-auto max-w-[1400px] px-5 sm:px-8">
+        <div className="grid gap-px overflow-hidden rounded-xl border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-7">
+          {services.map((s) => (
+            <div
+              key={s.title}
+              className="group bg-ink-2 px-5 py-8 text-center transition-colors duration-500 hover:bg-ink-3"
+            >
+              <s.icon
+                className="mx-auto text-white/85 transition-colors duration-500 group-hover:text-tan"
+                size={26}
+                strokeWidth={1.1}
+              />
+              <h3 className="mt-4 text-[11px] font-semibold uppercase tracking-[0.14em] text-white">
+                {s.title}
+              </h3>
+              <p className="mx-auto mt-2 max-w-[190px] text-[11.5px] leading-relaxed text-white/45">
+                {s.desc}
+              </p>
+            </div>
           ))}
         </div>
       </div>

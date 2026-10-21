@@ -11,33 +11,33 @@ const cards = [
 
 export function About() {
   return (
-    <section id="about" className="relative py-32">
-      <div className="mx-auto grid max-w-7xl gap-16 px-6 lg:grid-cols-2 lg:items-center">
+    <section id="about" className="relative bg-cream py-20 text-ink-fg sm:py-24">
+      <div className="mx-auto grid max-w-[1400px] gap-16 px-5 sm:px-8 lg:grid-cols-2 lg:items-center">
         <Reveal>
           <div className="relative">
-            <div className="absolute -left-4 -top-4 h-full w-full rounded-2xl border border-gold/30" />
+            <div className="absolute -left-4 -top-4 h-full w-full border border-tan/50" />
             <img
               src={about}
               alt="Photographer portrait"
               width={900}
               height={1100}
               loading="lazy"
-              className="relative aspect-[4/5] w-full rounded-2xl object-cover"
+              className="relative aspect-[4/5] w-full object-cover"
             />
-            <div className="absolute -bottom-6 -right-6 rounded-2xl glass px-6 py-4">
-              <p className="text-3xl text-gold-gradient font-display">10+</p>
-              <p className="text-xs uppercase tracking-widest text-muted-foreground">Years of craft</p>
+            <div className="absolute -bottom-6 right-0 bg-ink px-7 py-5 text-center">
+              <p className="font-display text-4xl leading-none text-tan">10+</p>
+              <p className="mt-2 text-[10px] uppercase tracking-[0.3em] text-white/60">Years of craft</p>
             </div>
           </div>
         </Reveal>
 
         <div>
           <Reveal>
-            <p className="mb-4 text-xs uppercase tracking-[0.4em] text-gold">— About the Studio —</p>
-            <h2 className="font-display text-4xl leading-tight text-foreground sm:text-5xl">
-              A quiet obsession with <em className="text-gold-gradient not-italic">light, story</em> and the moments in between.
+            <p className="eyebrow text-tan-deep">About the Studio</p>
+            <h2 className="mt-5 font-display text-4xl leading-[1.15] text-ink-fg sm:text-5xl">
+              A quiet obsession with <span className="text-tan-deep">light, story</span> and the moments in between.
             </h2>
-            <p className="mt-6 text-muted-foreground">
+            <p className="mt-6 max-w-xl text-[15px] leading-relaxed text-ink-muted">
               I'm  Poovarasan, a photographer with 10
                   years of experience capturing stories
                   through my lens. From events to creative
@@ -47,16 +47,15 @@ export function About() {
                   client satisfaction, and constantly push my
                   creativity to deliver impactful visual results.
             </p>
-            
           </Reveal>
 
-          <div className="mt-10 grid grid-cols-2 gap-4">
+          <div className="mt-12 grid grid-cols-2 gap-px bg-ink/10">
             {cards.map((c, i) => (
-              <Reveal key={c.title} delay={i * 0.08}>
-                <div className="group h-full rounded-2xl border border-border bg-surface/50 p-5 transition hover:border-gold/40">
-                  <c.icon className="text-gold" size={22} />
-                  <h3 className="mt-3 font-display text-xl text-foreground">{c.title}</h3>
-                  <p className="mt-1 text-sm text-muted-foreground">{c.desc}</p>
+              <Reveal key={c.title} delay={i * 0.08} className="h-full">
+                <div className="h-full bg-cream p-6 transition-colors duration-500 hover:bg-cream-2">
+                  <c.icon className="text-tan-deep" size={20} strokeWidth={1.4} />
+                  <h3 className="mt-3 font-display text-xl text-ink-fg">{c.title}</h3>
+                  <p className="mt-1.5 text-[13px] leading-relaxed text-ink-muted">{c.desc}</p>
                 </div>
               </Reveal>
             ))}

@@ -1,7 +1,7 @@
 import { useMemo, useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FiX, FiChevronLeft, FiChevronRight } from "react-icons/fi";
-import { SectionHeader, Reveal } from "./Reveal";
+import { FiX, FiChevronLeft, FiChevronRight, FiArrowRight } from "react-icons/fi";
+import { Reveal } from "./Reveal";
 import p1 from "@/assets/p1.jpg";
 import p2 from "@/assets/p2.jpg";
 import p3 from "@/assets/p3.jpg";
@@ -80,54 +80,73 @@ export function Portfolio() {
   }, [lightbox, close, next, prev]);
 
   return (
-    <section id="portfolio" className="relative bg-surface/40 py-32">
-      <div className="mx-auto max-w-7xl px-6">
-        <SectionHeader
-          eyebrow="Selected Work"
-          title="A gallery of stories"
-          subtitle="A curated selection from recent weddings, editorials and journeys."
-        />
+    <section id="portfolio" className="relative bg-cream py-20 text-ink-fg sm:py-24">
+      <div className="mx-auto max-w-[1400px] px-5 sm:px-8">
+        <Reveal className="flex flex-wrap items-end justify-between gap-8">
+          <div>
+            <p className="eyebrow text-tan-deep">Selected Work</p>
+            <h2 className="mt-4 font-display text-4xl leading-tight text-ink-fg sm:text-5xl">
+              A gallery of stories
+            </h2>
+            <p className="mt-4 max-w-xl text-[15px] text-ink-muted">
+              A curated selection from recent weddings, editorials and journeys.
+            </p>
+          </div>
+          <button
+            onClick={() => setActive("All")}
+            className="group flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-ink-fg transition hover:text-tan-deep"
+          >
+            View All Galleries
+            <FiArrowRight className="transition-transform duration-300 group-hover:translate-x-1" size={14} />
+          </button>
+        </Reveal>
 
-        <Reveal className="mb-12 flex flex-wrap justify-center gap-2">
+        <Reveal className="mt-12 flex flex-wrap gap-x-9 gap-y-3 border-b border-ink/10" delay={0.1}>
           {cats.map((c) => (
             <button
               key={c}
               onClick={() => setActive(c)}
-              className={`rounded-full border px-5 py-2 text-xs uppercase tracking-[0.2em] transition ${
-                active === c
-                  ? "border-gold bg-gold text-background"
-                  : "border-border text-muted-foreground hover:border-gold/50 hover:text-foreground"
+              className={`relative pb-3 text-[11px] font-semibold uppercase tracking-[0.18em] transition-colors ${
+                active === c ? "text-tan-deep" : "text-ink-muted hover:text-ink-fg"
               }`}
             >
               {c}
+              {active === c && (
+                <motion.span
+                  layoutId="portfolio-filter"
+                  className="absolute inset-x-0 -bottom-px h-[2px] bg-tan"
+                />
+              )}
             </button>
           ))}
         </Reveal>
 
-        <motion.div layout className="columns-1 gap-4 sm:columns-2 lg:columns-3 [&>*]:mb-4">
-          <AnimatePresence>
+        <motion.div layout className="mt-10 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+          <AnimatePresence mode="popLayout">
             {filtered.map((item, idx) => (
               <motion.button
                 key={item.src + idx + active}
                 layout
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.5, delay: idx * 0.04 }}
+                exit={{ opacity: 0, scale: 0.96 }}
+                transition={{ duration: 0.45, delay: idx * 0.03 }}
                 onClick={() => setLightbox(idx)}
-                className="group relative block w-full overflow-hidden rounded-xl break-inside-avoid"
+                className="group relative aspect-[3/4] overflow-hidden rounded-lg bg-ink"
               >
                 <img
                   src={item.src}
-                  alt={item.title}
+                  alt={item.title || item.cat}
                   loading="lazy"
-                  className="w-full transition-transform duration-[1200ms] ease-out group-hover:scale-110"
+                  className="h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.07]"
                 />
-                <div className="pointer-events-none absolute inset-0 flex items-end bg-gradient-to-t from-background/90 via-background/20 to-transparent p-5 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                  <div>
-                    <p className="text-xs uppercase tracking-[0.3em] text-gold">{item.cat}</p>
-                    <h3 className="mt-1 font-display text-2xl text-foreground">{item.title}</h3>
-                  </div>
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink via-ink/55 to-transparent p-4 pb-5 text-left">
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-tan">{item.cat}</p>
+                  {item.title && (
+                    <h3 className="mt-1 font-display text-lg leading-tight text-white drop-shadow-[0_1px_6px_rgba(0,0,0,0.6)]">
+                      {item.title}
+                    </h3>
+                  )}
                 </div>
               </motion.button>
             ))}
@@ -141,19 +160,19 @@ export function Portfolio() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-background/95 backdrop-blur-xl p-4"
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-ink/97 backdrop-blur-xl p-4"
             onClick={close}
           >
             <button
               onClick={close}
-              className="absolute right-6 top-6 rounded-full border border-border p-2 text-foreground hover:border-gold hover:text-gold"
+              className="absolute right-6 top-6 rounded-full border border-white/20 p-2 text-white transition hover:border-tan hover:text-tan"
               aria-label="Close"
             >
               <FiX size={24} />
             </button>
             <button
               onClick={(e) => { e.stopPropagation(); prev(); }}
-              className="absolute left-4 rounded-full border border-border p-3 text-foreground hover:border-gold hover:text-gold sm:left-8"
+              className="absolute left-4 rounded-full border border-white/20 p-3 text-white transition hover:border-tan hover:text-tan sm:left-8"
               aria-label="Previous"
             >
               <FiChevronLeft size={24} />
@@ -164,19 +183,19 @@ export function Portfolio() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0 }}
               src={filtered[lightbox].src}
-              alt={filtered[lightbox].title}
-              className="max-h-[85vh] max-w-[90vw] rounded-lg object-contain"
+              alt={filtered[lightbox].title || filtered[lightbox].cat}
+              className="max-h-[85vh] max-w-[90vw] object-contain"
               onClick={(e) => e.stopPropagation()}
             />
             <button
               onClick={(e) => { e.stopPropagation(); next(); }}
-              className="absolute right-4 rounded-full border border-border p-3 text-foreground hover:border-gold hover:text-gold sm:right-8"
+              className="absolute right-4 rounded-full border border-white/20 p-3 text-white transition hover:border-tan hover:text-tan sm:right-8"
               aria-label="Next"
             >
               <FiChevronRight size={24} />
             </button>
-            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-xs uppercase tracking-[0.3em] text-muted-foreground">
-              {lightbox + 1} / {filtered.length} — {filtered[lightbox].title}
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-[10px] uppercase tracking-[0.3em] text-white/45">
+              {lightbox + 1} / {filtered.length} — {filtered[lightbox].title || filtered[lightbox].cat}
             </div>
           </motion.div>
         )}

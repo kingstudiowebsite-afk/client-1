@@ -29,20 +29,21 @@ function Counter({ end, suffix }: { end: number; suffix: string }) {
   }, [inView, end]);
 
   return (
-    <span ref={ref} className="font-display text-5xl text-gold-gradient sm:text-6xl">
-      {n}{suffix}
+    <span ref={ref} className="font-display text-5xl leading-none text-tan-deep sm:text-6xl">
+      {n}
+      {suffix}
     </span>
   );
 }
 
 export function Stats() {
   return (
-    <section className="relative border-y border-border py-20">
-      <div className="mx-auto grid max-w-6xl gap-10 px-6 sm:grid-cols-2 lg:grid-cols-4">
+    <section className="relative border-y border-ink/10 bg-cream-2 py-16 text-ink-fg sm:py-20">
+      <div className="mx-auto grid max-w-[1400px] grid-cols-2 gap-px bg-ink/10 px-5 sm:px-8 lg:grid-cols-4">
         {stats.map((s) => (
-          <div key={s.label} className="text-center">
+          <div key={s.label} className="bg-cream-2 px-4 py-6 text-center">
             <Counter end={s.value} suffix={s.suffix} />
-            <p className="mt-3 text-xs uppercase tracking-[0.3em] text-muted-foreground">{s.label}</p>
+            <p className="mt-3 text-[10px] uppercase tracking-[0.28em] text-ink-muted">{s.label}</p>
           </div>
         ))}
       </div>

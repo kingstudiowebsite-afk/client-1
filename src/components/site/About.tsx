@@ -16,17 +16,13 @@ export function About() {
       <div className="mx-auto grid max-w-[1440px] items-center gap-12 px-5 sm:px-8 lg:grid-cols-[1.12fr_1fr_248px] lg:gap-12 xl:gap-16">
         <Reveal>
           <div className="relative">
-            <div
-              className="relative h-[360px] overflow-hidden sm:h-[440px] lg:h-[480px]"
-              style={{ clipPath: "polygon(0 0, 100% 0, 100% 84%, 0 100%)" }}
-            >
+            <div className="relative overflow-hidden">
               <FadeImage
                 src={about}
                 alt="Photographer portrait"
-                className="h-full w-full"
-                imgClassName="object-top"
+                className="w-full"
+                fit="contain"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-navy/55 via-transparent to-transparent" />
             </div>
             <span className="absolute right-8 top-8 h-16 w-px bg-gold/60" />
             <span className="absolute left-0 top-0 h-px w-24 bg-gold/50" />

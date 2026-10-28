@@ -7,13 +7,14 @@ type Props = {
   /** extra classes applied to the <img> itself (hover zoom etc.) */
   imgClassName?: string;
   eager?: boolean;
+  fit?: "cover" | "contain";
 };
 
 /**
  * An image that fades in once its bytes are decoded, so a lazy-loaded photo
  * never snaps onto the page. Opacity only — the hover transform stays free.
  */
-export function FadeImage({ src, alt, className = "", imgClassName = "", eager = false }: Props) {
+export function FadeImage({ src, alt, className = "", imgClassName = "", eager = false, fit = "cover" }: Props) {
   const ref = useRef<HTMLImageElement>(null);
   const [loaded, setLoaded] = useState(false);
 
@@ -37,7 +38,9 @@ export function FadeImage({ src, alt, className = "", imgClassName = "", eager =
         loading={eager ? "eager" : "lazy"}
         decoding="async"
         onLoad={() => setLoaded(true)}
-        className={`h-full w-full object-cover transition-opacity duration-[900ms] ease-out ${
+        className={`${
+          fit === "contain" ? "h-auto w-full object-contain" : "h-full w-full object-cover"
+        } transition-opacity duration-[900ms] ease-out ${
           loaded ? "opacity-100" : "opacity-0"
         } ${imgClassName}`}
       />

@@ -17,15 +17,16 @@ export function About() {
         <Reveal>
           <div className="relative">
             <div
-              className="relative h-[300px] overflow-hidden sm:h-[380px] lg:h-[420px]"
+              className="relative h-[360px] overflow-hidden sm:h-[440px] lg:h-[480px]"
               style={{ clipPath: "polygon(0 0, 100% 0, 100% 84%, 0 100%)" }}
             >
               <FadeImage
                 src={about}
                 alt="Photographer portrait"
                 className="h-full w-full"
+                imgClassName="object-top"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-navy/10 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-navy/55 via-transparent to-transparent" />
             </div>
             <span className="absolute right-8 top-8 h-16 w-px bg-gold/60" />
             <span className="absolute left-0 top-0 h-px w-24 bg-gold/50" />

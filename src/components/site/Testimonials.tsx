@@ -38,63 +38,71 @@ export function Testimonials() {
 
   return (
     <section id="testimonials" className="relative bg-cream py-20 text-ink-fg sm:py-24">
-      <div className="mx-auto max-w-[1400px] px-5 sm:px-8">
-        <Reveal className="text-center">
-          <p className="eyebrow text-tan-deep">Kind Words</p>
-          <h2 className="mt-4 font-display text-4xl leading-tight text-ink-fg sm:text-5xl">
-            What clients say
-          </h2>
-          <div className="mt-6 flex items-center justify-center gap-3">
-            <span className="h-px w-10 bg-tan/40" />
-            <span className="h-1.5 w-1.5 rotate-45 bg-tan" />
-            <span className="h-px w-10 bg-tan/40" />
+      <div className="mx-auto max-w-[1440px] px-5 sm:px-8">
+        <Reveal className="flex flex-wrap items-end justify-between gap-8">
+          <div>
+            <div className="flex items-center gap-3">
+              <span className="h-px w-8 bg-gold-deep/50" />
+              <p className="eyebrow text-gold-deep">Kind Words</p>
+            </div>
+            <h2 className="mt-5 font-display text-[2.3rem] uppercase leading-[1.04] text-navy sm:text-[2.7rem]">
+              What Clients Say
+            </h2>
+          </div>
+
+          <div className="flex gap-2">
+            <button
+              onClick={prev}
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-navy/20 text-navy transition-colors hover:border-gold hover:bg-gold"
+              aria-label="Previous"
+            >
+              <FiChevronLeft size={15} />
+            </button>
+            <button
+              onClick={next}
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-navy/20 text-navy transition-colors hover:border-gold hover:bg-gold"
+              aria-label="Next"
+            >
+              <FiChevronRight size={15} />
+            </button>
           </div>
         </Reveal>
 
-        <div className="relative mt-14">
-          <button
-            onClick={prev}
-            className="absolute -left-3 top-1/2 z-10 hidden h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-ink/10 bg-white text-ink-fg shadow-sm transition hover:border-tan hover:text-tan-deep sm:flex"
-            aria-label="Previous"
-          >
-            <FiChevronLeft size={16} />
-          </button>
-          <button
-            onClick={next}
-            className="absolute -right-3 top-1/2 z-10 hidden h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-ink/10 bg-white text-ink-fg shadow-sm transition hover:border-tan hover:text-tan-deep sm:flex"
-            aria-label="Next"
-          >
-            <FiChevronRight size={16} />
-          </button>
-
+        <div className="relative mt-12">
           <AnimatePresence mode="wait">
             <motion.div
               key={i}
               initial={{ opacity: 0, x: 26 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -26 }}
-              transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-              className="grid gap-6 sm:grid-cols-3"
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className="grid gap-5 sm:grid-cols-3"
             >
               {visible.map((t) => (
                 <div
                   key={t.name + t.role}
-                  className="flex h-full flex-col bg-white p-7 shadow-[0_14px_40px_-24px_rgba(23,19,15,0.45)]"
+                  className="group flex h-full flex-col border border-navy/12 bg-cream-2/40 p-7 transition-colors duration-500 hover:border-gold/50 hover:bg-cream-2/70"
                 >
-                  <p className="text-[13.5px] leading-relaxed text-ink-fg/85">"{t.quote}"</p>
-                  <div className="mt-auto flex items-center justify-between gap-4 pt-7">
+                  <span className="font-display text-[2.6rem] leading-[0.7] text-gold/70">“</span>
+                  <p className="mt-5 text-[13px] leading-[1.8] text-ink-fg/80">{t.quote}</p>
+
+                  <div className="mt-auto flex items-center justify-between gap-4 border-t border-navy/10 pt-6">
                     <div className="flex min-w-0 items-center gap-3">
-                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-ink text-[11px] font-semibold tracking-wide text-tan">
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-gold/40 bg-navy text-[10px] tracking-wide text-gold">
                         {t.initials}
                       </span>
                       <span className="min-w-0">
-                        <span className="block truncate text-[13px] font-semibold text-ink-fg">{t.name}</span>
-                        <span className="block text-[9.5px] uppercase tracking-[0.2em] text-ink-muted">{t.role}</span>
+                        <span className="block truncate font-display text-[14px] text-navy">
+                          {t.name}
+                        </span>
+                        <span className="block text-[8px] uppercase tracking-[0.22em] text-ink-muted">
+                          {t.role}
+                        </span>
                       </span>
                     </div>
                     <span className="flex shrink-0 gap-0.5 text-gold">
                       {Array.from({ length: t.rating }).map((_, k) => (
-                        <FiStar key={k} className="fill-current" size={12} />
+                        <FiStar key={k} className="fill-current" size={10} />
                       ))}
                     </span>
                   </div>
@@ -104,12 +112,14 @@ export function Testimonials() {
           </AnimatePresence>
         </div>
 
-        <div className="mt-10 flex items-center justify-center gap-2.5">
+        <div className="mt-9 flex items-center gap-2.5">
           {items.map((_, k) => (
             <button
               key={k}
               onClick={() => setI(k)}
-              className={`h-1.5 rounded-full transition-all ${k === i ? "w-8 bg-tan" : "w-1.5 bg-ink/20"}`}
+              className={`h-px transition-all duration-500 ${
+                k === i ? "w-10 bg-gold-deep" : "w-5 bg-navy/20"
+              }`}
               aria-label={`Slide ${k + 1}`}
             />
           ))}

@@ -1,6 +1,6 @@
 import { Reveal } from "./Reveal";
 import about from "@/assets/hero1.png";
-import { FiAward, FiCamera, FiHeart, FiStar } from "react-icons/fi";
+import { FiAward, FiCamera, FiHeart, FiStar, FiArrowRight } from "react-icons/fi";
 
 const cards = [
   { icon: FiCamera, title: "Cinematic Eye", desc: "Every frame composed like a still from film." },
@@ -11,56 +11,78 @@ const cards = [
 
 export function About() {
   return (
-    <section id="about" className="relative bg-cream py-20 text-ink-fg sm:py-24">
-      <div className="mx-auto grid max-w-[1400px] gap-16 px-5 sm:px-8 lg:grid-cols-2 lg:items-center">
+    <section id="about" className="relative overflow-hidden bg-navy py-20 text-white sm:py-24">
+      <div className="mx-auto grid max-w-[1440px] items-center gap-12 px-5 sm:px-8 lg:grid-cols-[1.12fr_1fr_248px] lg:gap-12 xl:gap-16">
         <Reveal>
           <div className="relative">
-            <div className="absolute -left-4 -top-4 h-full w-full border border-tan/50" />
-            <img
-              src={about}
-              alt="Photographer portrait"
-              width={900}
-              height={1100}
-              loading="lazy"
-              className="relative aspect-[4/5] w-full object-cover"
-            />
-            <div className="absolute -bottom-6 right-0 bg-ink px-7 py-5 text-center">
-              <p className="font-display text-4xl leading-none text-tan">10+</p>
-              <p className="mt-2 text-[10px] uppercase tracking-[0.3em] text-white/60">Years of craft</p>
+            <div
+              className="relative h-[300px] overflow-hidden sm:h-[380px] lg:h-[420px]"
+              style={{ clipPath: "polygon(0 0, 100% 0, 100% 84%, 0 100%)" }}
+            >
+              <img
+                src={about}
+                alt="Photographer portrait"
+                width={900}
+                height={1100}
+                loading="lazy"
+                className="h-full w-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-navy/10 to-transparent" />
             </div>
+            <span className="absolute right-8 top-8 h-16 w-px bg-gold/60" />
+            <span className="absolute left-0 top-0 h-px w-24 bg-gold/50" />
           </div>
         </Reveal>
 
         <div>
           <Reveal>
-            <p className="eyebrow text-tan-deep">About the Studio</p>
-            <h2 className="mt-5 font-display text-4xl leading-[1.15] text-ink-fg sm:text-5xl">
-              A quiet obsession with <span className="text-tan-deep">light, story</span> and the moments in between.
+            <div className="flex items-center gap-3">
+              <span className="h-px w-8 bg-gold/60" />
+              <p className="eyebrow text-gold">About the Studio</p>
+            </div>
+            <h2 className="mt-5 font-display text-[1.9rem] uppercase leading-[1.14] text-white sm:text-[2.35rem] xl:text-[2.6rem]">
+              A quiet obsession with <span className="text-gold">light, story</span> and the moments
+              in between.
             </h2>
-            <p className="mt-6 max-w-xl text-[15px] leading-relaxed text-ink-muted">
-              I'm  Poovarasan, a photographer with 10
-                  years of experience capturing stories
-                  through my lens. From events to creative
-                  projects, I approach every shoot with
-                  passion, precision, and a drive to exceed
-                  expectations. I thrive under pressure, value
-                  client satisfaction, and constantly push my
-                  creativity to deliver impactful visual results.
+            <p className="mt-6 max-w-xl text-[13px] leading-[1.85] text-white/55">
+              I'm Poovarasan, a photographer with 10 years of experience capturing stories through my
+              lens. From events to creative projects, I approach every shoot with passion, precision,
+              and a drive to exceed expectations. I thrive under pressure, value client satisfaction,
+              and constantly push my creativity to deliver impactful visual results.
             </p>
+            <a
+              href="#portfolio"
+              className="group mt-8 inline-flex items-center gap-3 rounded-full border border-gold/50 px-6 py-3 text-[9px] uppercase tracking-[0.26em] text-gold transition-colors duration-300 hover:bg-gold hover:text-navy"
+            >
+              View Portfolio
+              <FiArrowRight
+                size={12}
+                className="transition-transform duration-300 group-hover:translate-x-1"
+              />
+            </a>
           </Reveal>
+        </div>
 
-          <div className="mt-12 grid grid-cols-2 gap-px bg-ink/10">
-            {cards.map((c, i) => (
-              <Reveal key={c.title} delay={i * 0.08} className="h-full">
-                <div className="h-full bg-cream p-6 transition-colors duration-500 hover:bg-cream-2">
-                  <c.icon className="text-tan-deep" size={20} strokeWidth={1.4} />
-                  <h3 className="mt-3 font-display text-xl text-ink-fg">{c.title}</h3>
-                  <p className="mt-1.5 text-[13px] leading-relaxed text-ink-muted">{c.desc}</p>
+        <Reveal delay={0.12} className="self-stretch">
+          <div className="border-t border-white/10">
+            {cards.map((c) => (
+              <div
+                key={c.title}
+                className="group flex items-start gap-4 border-b border-white/10 py-5"
+              >
+                <c.icon
+                  className="mt-0.5 shrink-0 text-gold transition-transform duration-300 group-hover:-translate-y-0.5"
+                  size={19}
+                  strokeWidth={1.15}
+                />
+                <div>
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-white/90">{c.title}</p>
+                  <p className="mt-1.5 text-[10.5px] leading-[1.6] text-white/40">{c.desc}</p>
                 </div>
-              </Reveal>
+              </div>
             ))}
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

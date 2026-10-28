@@ -15,35 +15,44 @@ export function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="relative bg-cream py-20 text-ink-fg sm:py-24">
-      <div className="mx-auto grid max-w-[1400px] gap-14 px-5 sm:px-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+    <section id="faq" className="relative bg-cream-2 py-20 text-ink-fg sm:py-24">
+      <div className="mx-auto grid max-w-[1440px] gap-12 px-5 sm:px-8 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
         <Reveal>
-          <p className="eyebrow text-tan-deep">Answers</p>
-          <h2 className="mt-4 font-display text-4xl leading-tight text-ink-fg sm:text-5xl">
-            Frequently asked
+          <div className="flex items-center gap-3">
+            <span className="h-px w-8 bg-gold-deep/50" />
+            <p className="eyebrow text-gold-deep">Answers</p>
+          </div>
+          <h2 className="mt-5 font-display text-[2.3rem] uppercase leading-[1.04] text-navy sm:text-[2.7rem]">
+            Frequently
+            <br />
+            Asked
           </h2>
-          <p className="mt-5 max-w-sm text-[15px] leading-relaxed text-ink-muted">
+          <p className="mt-6 max-w-[260px] text-[13px] leading-[1.8] text-ink-muted">
             Everything you need to know before we start shooting.
           </p>
         </Reveal>
 
-        <div className="border-t border-ink/12">
+        <div className="border-t border-navy/15">
           {faqs.map((f, i) => {
             const isOpen = open === i;
             return (
               <Reveal key={f.q} delay={i * 0.05}>
-                <div className="border-b border-ink/12">
+                <div className="border-b border-navy/15">
                   <button
                     onClick={() => setOpen(isOpen ? null : i)}
                     className="flex w-full items-center justify-between gap-6 py-6 text-left"
                   >
-                    <span className="font-display text-lg text-ink-fg sm:text-xl">{f.q}</span>
+                    <span className="font-display text-[15px] leading-snug text-navy sm:text-[17px]">
+                      {f.q}
+                    </span>
                     <span
-                      className={`flex h-7 w-7 shrink-0 items-center justify-center border transition-all duration-500 ${
-                        isOpen ? "rotate-45 border-tan bg-tan text-ink" : "border-ink/20 text-ink-muted"
+                      className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition-all duration-500 ${
+                        isOpen
+                          ? "rotate-45 border-gold bg-gold text-navy"
+                          : "border-navy/20 text-navy/60"
                       }`}
                     >
-                      <FiPlus size={14} />
+                      <FiPlus size={13} />
                     </span>
                   </button>
                   <AnimatePresence initial={false}>
@@ -52,10 +61,12 @@ export function FAQ() {
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                        transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
                         className="overflow-hidden"
                       >
-                        <p className="max-w-2xl pb-6 pr-10 text-[14px] leading-relaxed text-ink-muted">{f.a}</p>
+                        <p className="max-w-2xl pb-7 pr-10 text-[12.5px] leading-[1.85] text-ink-muted">
+                          {f.a}
+                        </p>
                       </motion.div>
                     )}
                   </AnimatePresence>

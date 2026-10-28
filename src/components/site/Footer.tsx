@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FaInstagram, FaBehance } from "react-icons/fa";
 import { FiArrowRight } from "react-icons/fi";
-import { Logo } from "./Logo";
+import { KingBadge } from "./Logo";
 import { WhatsAppIcon } from "./WhatsAppIcon";
 import { WHATSAPP_URL } from "@/lib/contact";
 
@@ -42,30 +42,35 @@ export function Footer() {
   const [subscribed, setSubscribed] = useState(false);
 
   return (
-    <footer className="relative bg-ink text-white">
-      <div className="mx-auto max-w-[1400px] px-5 py-16 sm:px-8">
+    <footer className="relative border-t border-gold/20 bg-navy text-white">
+      <div className="mx-auto max-w-[1440px] px-5 py-16 sm:px-8">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-12 lg:gap-8">
           {/* brand */}
           <div className="lg:col-span-3">
-            <Logo />
-            <p className="mt-5 max-w-xs text-[13px] leading-relaxed text-white/45">
+            <a href="#home" aria-label="KING STUDIO home" className="flex items-center gap-3.5">
+              <KingBadge size={58} />
+              <span className="font-display text-[1.15rem] uppercase leading-none tracking-[0.17em] text-white">
+                King Studio
+              </span>
+            </a>
+            <p className="mt-6 max-w-[240px] text-[12px] leading-[1.85] text-white/45">
               Capturing real moments and creating timeless memories. Let's tell your story through
               our lens.
             </p>
             <div className="mt-6 flex gap-2.5">
               {[
-                { Icon: FaInstagram, href: IG_URL },
-                { Icon: FaBehance, href: BE_URL },
-              ].map(({ Icon, href }, i) => (
+                { Icon: FaInstagram, href: IG_URL, label: "Instagram" },
+                { Icon: FaBehance, href: BE_URL, label: "Behance" },
+              ].map(({ Icon, href, label }) => (
                 <a
-                  key={i}
+                  key={label}
                   href={href}
                   target="_blank"
                   rel="noreferrer"
-                  aria-label="Social link"
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-white/12 text-white/60 transition hover:border-tan hover:text-tan"
+                  aria-label={label}
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-white/12 text-white/55 transition-colors duration-300 hover:border-gold hover:bg-gold hover:text-navy"
                 >
-                  <Icon size={14} />
+                  <Icon size={13} />
                 </a>
               ))}
               <a
@@ -73,20 +78,20 @@ export function Footer() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="WhatsApp"
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-white/12 text-white/60 transition hover:border-tan hover:text-tan"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-white/12 text-white/55 transition-colors duration-300 hover:border-gold hover:bg-gold hover:text-navy"
               >
-                <WhatsAppIcon size={15} />
+                <WhatsAppIcon size={14} />
               </a>
             </div>
           </div>
 
           {/* quick links */}
           <div className="lg:col-span-2">
-            <p className="eyebrow text-white/85">Quick Links</p>
-            <ul className="mt-5 space-y-2.5 text-[13px] text-white/45">
+            <p className="eyebrow text-gold">Quick Links</p>
+            <ul className="mt-5 space-y-2.5 text-[11.5px] text-white/45">
               {quickLinks.map((l) => (
                 <li key={l.label}>
-                  <a href={l.href} className="transition hover:text-tan">
+                  <a href={l.href} className="transition-colors hover:text-gold">
                     {l.label}
                   </a>
                 </li>
@@ -96,11 +101,11 @@ export function Footer() {
 
           {/* services */}
           <div className="lg:col-span-2">
-            <p className="eyebrow text-white/85">Services</p>
-            <ul className="mt-5 space-y-2.5 text-[13px] text-white/45">
+            <p className="eyebrow text-gold">Services</p>
+            <ul className="mt-5 space-y-2.5 text-[11.5px] text-white/45">
               {serviceLinks.map((s) => (
                 <li key={s}>
-                  <a href="#services" className="transition hover:text-tan">
+                  <a href="#services" className="transition-colors hover:text-gold">
                     {s}
                   </a>
                 </li>
@@ -110,11 +115,11 @@ export function Footer() {
 
           {/* information */}
           <div className="lg:col-span-2">
-            <p className="eyebrow text-white/85">Information</p>
-            <ul className="mt-5 space-y-2.5 text-[13px] text-white/45">
+            <p className="eyebrow text-gold">Information</p>
+            <ul className="mt-5 space-y-2.5 text-[11.5px] text-white/45">
               {informationLinks.map((l) => (
                 <li key={l.label}>
-                  <a href={l.href} className="transition hover:text-tan">
+                  <a href={l.href} className="transition-colors hover:text-gold">
                     {l.label}
                   </a>
                 </li>
@@ -124,8 +129,8 @@ export function Footer() {
 
           {/* newsletter */}
           <div className="lg:col-span-3">
-            <p className="eyebrow text-white/85">Newsletter</p>
-            <p className="mt-5 text-[13px] leading-relaxed text-white/45">
+            <p className="eyebrow text-gold">Newsletter</p>
+            <p className="mt-5 text-[11.5px] leading-[1.85] text-white/45">
               Subscribe to get exclusive offers &amp; photography tips!
             </p>
             <form
@@ -133,7 +138,7 @@ export function Footer() {
                 e.preventDefault();
                 setSubscribed(true);
               }}
-              className="mt-5 flex"
+              className="mt-5 flex items-center border-b border-white/20 focus-within:border-gold"
             >
               <input
                 type="email"
@@ -144,23 +149,25 @@ export function Footer() {
                   setSubscribed(false);
                 }}
                 placeholder="Enter your email"
-                className="min-w-0 flex-1 border border-white/12 bg-ink-2 px-4 py-3 text-[13px] text-white placeholder:text-white/35 transition-colors focus:border-tan focus:outline-none"
+                className="min-w-0 flex-1 bg-transparent py-3 text-[12.5px] text-white placeholder:text-white/30 focus:outline-none"
               />
               <button
                 type="submit"
                 aria-label="Subscribe"
-                className="flex w-12 shrink-0 items-center justify-center bg-tan text-ink transition hover:bg-tan-light"
+                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-gold transition-colors hover:bg-gold hover:text-navy"
               >
-                <FiArrowRight size={16} />
+                <FiArrowRight size={15} />
               </button>
             </form>
-            {subscribed && <p className="mt-2.5 text-[11px] uppercase tracking-[0.2em] text-tan">Subscribed</p>}
+            {subscribed && (
+              <p className="mt-2.5 text-[8.5px] uppercase tracking-[0.24em] text-gold">Subscribed</p>
+            )}
           </div>
         </div>
       </div>
 
-      <div className="border-t border-white/[0.07]">
-        <div className="mx-auto flex max-w-[1400px] flex-col items-center justify-between gap-3 px-5 py-5 text-[12px] text-white/35 sm:flex-row sm:px-8">
+      <div className="border-t border-white/[0.08]">
+        <div className="mx-auto flex max-w-[1440px] flex-col items-center justify-between gap-3 px-5 py-5 text-[10.5px] tracking-[0.06em] text-white/35 sm:flex-row sm:px-8">
           <p>© {new Date().getFullYear()} KING STUDIO Photography. All Rights Reserved.</p>
           <p>Crafted with obsession in Chennai.</p>
         </div>

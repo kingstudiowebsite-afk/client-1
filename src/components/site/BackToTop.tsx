@@ -8,7 +8,7 @@ export function BackToTop() {
   useEffect(() => {
     const onScroll = () => setShow(window.scrollY > 600);
     onScroll();
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
@@ -21,9 +21,9 @@ export function BackToTop() {
           exit={{ opacity: 0, scale: 0.8 }}
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           aria-label="Back to top"
-          className="fixed bottom-6 right-6 z-50 flex h-11 w-11 items-center justify-center rounded-[3px] bg-tan text-ink transition hover:bg-tan-light"
+          className="fixed bottom-6 right-6 z-50 flex h-11 w-11 items-center justify-center rounded-full border border-gold/60 bg-navy/90 text-gold shadow-[0_14px_30px_-18px_rgba(0,0,0,0.9)] backdrop-blur transition-colors duration-300 hover:bg-gold hover:text-navy"
         >
-          <FiArrowUp size={18} />
+          <FiArrowUp size={17} />
         </motion.button>
       )}
     </AnimatePresence>

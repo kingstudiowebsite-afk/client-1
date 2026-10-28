@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { useInView } from "framer-motion";
+import { FiUsers, FiGrid, FiAward, FiStar } from "react-icons/fi";
+import hero from "@/assets/hero.jpg";
 
 const stats = [
-  { value: 500, suffix: "+", label: "Happy Clients" },
-  { value: 1000, suffix: "+", label: "Projects Completed" },
-  { value: 10, suffix: "+", label: "Years Experience" },
-  { value: 98, suffix: "%", label: "Client Satisfaction" },
+  { value: 500, suffix: "+", label: "Happy Clients", icon: FiUsers },
+  { value: 1000, suffix: "+", label: "Projects Completed", icon: FiGrid },
+  { value: 10, suffix: "+", label: "Years Experience", icon: FiAward },
+  { value: 98, suffix: "%", label: "Client Satisfaction", icon: FiStar },
 ];
 
 function Counter({ end, suffix }: { end: number; suffix: string }) {
@@ -29,23 +31,52 @@ function Counter({ end, suffix }: { end: number; suffix: string }) {
   }, [inView, end]);
 
   return (
-    <span ref={ref} className="font-display text-5xl leading-none text-tan-deep sm:text-6xl">
+    <span ref={ref} className="font-display text-[2.3rem] leading-none text-white sm:text-[2.7rem]">
       {n}
-      {suffix}
+      <span className="text-gold">{suffix}</span>
     </span>
   );
 }
 
 export function Stats() {
   return (
-    <section className="relative border-y border-ink/10 bg-cream-2 py-16 text-ink-fg sm:py-20">
-      <div className="mx-auto grid max-w-[1400px] grid-cols-2 gap-px bg-ink/10 px-5 sm:px-8 lg:grid-cols-4">
-        {stats.map((s) => (
-          <div key={s.label} className="bg-cream-2 px-4 py-6 text-center">
-            <Counter end={s.value} suffix={s.suffix} />
-            <p className="mt-3 text-[10px] uppercase tracking-[0.28em] text-ink-muted">{s.label}</p>
+    <section className="relative overflow-hidden border-y border-gold/15 bg-navy-2 py-0 text-white">
+      <div className="mx-auto grid max-w-[1440px] items-center lg:grid-cols-[0.78fr_1.7fr]">
+        {/* circular lens-style image bleeding off the left edge */}
+        <div className="relative hidden h-[340px] lg:block">
+          <div className="absolute -left-44 top-1/2 h-[440px] w-[440px] -translate-y-1/2 overflow-hidden rounded-full ring-1 ring-gold/25">
+            <img src={hero} alt="" className="h-full w-full object-cover object-center" />
+            <div className="absolute inset-0 bg-navy/35" />
+            <div className="absolute inset-0 bg-gradient-to-r from-navy/70 via-transparent to-navy/40" />
           </div>
-        ))}
+          <div className="absolute -left-24 top-1/2 h-[470px] w-[470px] -translate-y-1/2 rounded-full border border-gold/15" />
+        </div>
+
+        <div className="px-5 py-14 sm:px-8 lg:pl-0 lg:pr-8">
+          <div className="flex items-center gap-3">
+            <span className="h-px w-10 bg-gold/50" />
+            <p className="eyebrow text-gold">Our Impact</p>
+          </div>
+
+          <div className="mt-9 grid grid-cols-2 gap-y-10 lg:grid-cols-4">
+            {stats.map((s, i) => (
+              <div
+                key={s.label}
+                className={`px-5 lg:px-6 ${
+                  i === 0 ? "pl-0 lg:pl-0" : "border-l border-white/10"
+                } ${i === 1 ? "pl-5" : ""}`}
+              >
+                <s.icon className="text-gold" size={21} strokeWidth={1.1} />
+                <div className="mt-4">
+                  <Counter end={s.value} suffix={s.suffix} />
+                </div>
+                <p className="mt-2.5 text-[9px] uppercase tracking-[0.24em] text-white/55">
+                  {s.label}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

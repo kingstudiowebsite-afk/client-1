@@ -1,4 +1,4 @@
-import { FiCheck, FiCamera, FiClock, FiStar, FiAward, FiGift } from "react-icons/fi";
+import { FiCheck, FiCamera, FiClock, FiStar, FiAward } from "react-icons/fi";
 import bandImage from "@/assets/about.jpg";
 
 const tiers = [
@@ -30,21 +30,26 @@ const tiers = [
 
 export function Packages() {
   return (
-    <section id="packages" className="relative bg-cream py-20 sm:py-24">
-      <div className="mx-auto max-w-[1400px] px-5 sm:px-8">
-        <div className="grid overflow-hidden rounded-2xl bg-ink lg:grid-cols-[1.05fr_0.78fr_0.78fr_0.78fr_0.9fr]">
+    <section id="packages" className="relative bg-navy py-20 text-white sm:py-24">
+      <div className="mx-auto max-w-[1440px] px-5 sm:px-8">
+        <div className="grid overflow-hidden border border-gold/20 lg:grid-cols-4 xl:grid-cols-[1.02fr_0.82fr_0.82fr_0.82fr_0.86fr]">
           {/* left copy */}
-          <div className="p-8 sm:p-10 lg:p-12">
-            <p className="eyebrow text-tan">Investment</p>
-            <h2 className="mt-5 font-display text-3xl leading-[1.12] text-white sm:text-4xl">
-              Curated packages
+          <div className="border-b border-gold/15 p-8 sm:p-10 lg:border-b-0 lg:border-r lg:p-9">
+            <div className="flex items-center gap-3">
+              <span className="h-px w-8 bg-gold/60" />
+              <p className="eyebrow text-gold">Investment</p>
+            </div>
+            <h2 className="mt-5 font-display text-[2.1rem] uppercase leading-[1.06] text-white sm:text-[2.4rem]">
+              Curated
+              <br />
+              Packages
             </h2>
-            <p className="mt-4 text-[13px] leading-relaxed text-white/50">
+            <p className="mt-5 max-w-[240px] text-[12px] leading-[1.8] text-white/50">
               Transparent pricing. Every collection is fully customizable to your day.
             </p>
             <a
               href="#contact"
-              className="mt-8 inline-block rounded-[3px] bg-tan px-7 py-3.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-ink transition hover:bg-tan-light"
+              className="mt-8 inline-flex items-center gap-2.5 rounded-full border border-gold/55 px-5 py-2.5 text-[8.5px] uppercase tracking-[0.24em] text-gold transition-colors duration-300 hover:bg-gold hover:text-navy"
             >
               View Packages
             </a>
@@ -54,45 +59,56 @@ export function Packages() {
           {tiers.map((t) => (
             <div
               key={t.name}
-              className={`relative border-t border-white/10 p-7 lg:border-l lg:border-t-0 lg:p-8 ${
-                t.highlight ? "bg-ink-2" : ""
+              className={`relative border-b border-gold/15 p-7 lg:border-b-0 lg:border-r lg:p-7 ${
+                t.highlight ? "bg-navy-3/70" : ""
               }`}
             >
               {t.highlight && (
-                <span className="absolute right-5 top-5 rounded-[2px] bg-tan px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.18em] text-ink">
-                  Most Loved
-                </span>
+                <>
+                  <span className="absolute inset-x-0 top-0 h-px bg-gold" />
+                  <span className="absolute right-5 top-6 rounded-full border border-gold/50 bg-gold/10 px-2.5 py-1 text-[7.5px] uppercase tracking-[0.2em] text-gold">
+                    Most Loved
+                  </span>
+                </>
               )}
 
-              <div className="flex items-center gap-2.5 text-white/70">
+              <div className="flex items-center gap-2.5 text-gold/80">
                 {t.icons.map((Icon, k) => (
-                  <Icon key={k} size={17} strokeWidth={1.2} />
+                  <Icon key={k} size={15} strokeWidth={1.2} />
                 ))}
               </div>
 
-              <p className="mt-5 text-[11px] font-semibold uppercase tracking-[0.2em] text-white">
+              <p className="mt-5 font-display text-[1.05rem] uppercase tracking-[0.12em] text-white">
                 {t.name}
               </p>
-              <p className="mt-1.5 text-[10px] uppercase tracking-[0.2em] text-tan">{t.tag}</p>
+              <p className="mt-1.5 text-[8.5px] uppercase tracking-[0.24em] text-gold">{t.tag}</p>
 
-              <ul className="mt-4 space-y-1.5">
+              <ul className="mt-5 space-y-2">
                 {t.features.map((f) => (
-                  <li key={f} className="flex items-start gap-2 text-[11.5px] leading-snug text-white/45">
-                    <FiCheck className="mt-[3px] shrink-0 text-tan" size={11} />
+                  <li key={f} className="flex items-start gap-2 text-[10.5px] leading-snug text-white/45">
+                    <FiCheck className="mt-[3px] shrink-0 text-gold/80" size={10} />
                     <span>{f}</span>
                   </li>
                 ))}
               </ul>
 
-              <p className="mt-6 text-[13px] font-semibold tracking-[0.06em] text-white">FROM {t.price}</p>
-              <p className="text-[9.5px] uppercase tracking-[0.2em] text-white/30">starting investment</p>
+              <div className="mt-6 border-t border-white/10 pt-5">
+                <p className="font-display text-[1.3rem] leading-none text-gold">
+                  <span className="text-[10px] uppercase tracking-[0.2em] text-white/40">From </span>
+                  {t.price}
+                </p>
+                <p className="mt-1.5 text-[7.5px] uppercase tracking-[0.24em] text-white/30">
+                  starting investment
+                </p>
+              </div>
             </div>
           ))}
 
           {/* photo panel */}
-          <div className="relative hidden lg:block">
+          <div className="relative hidden xl:block">
             <img src={bandImage} alt="Photographer at work" className="h-full w-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/25 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/30 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-navy/70 to-transparent" />
           </div>
         </div>
       </div>

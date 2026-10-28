@@ -16,7 +16,7 @@ function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-gold-gradient">404</h1>
+        <h1 className="text-7xl font-bold gold-text">404</h1>
         <h2 className="mt-4 text-2xl text-foreground">Page not found</h2>
         <p className="mt-2 text-sm text-muted-foreground">
           The frame you're looking for is out of focus.
@@ -63,6 +63,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "theme-color", content: "#0a1122" },
       { title: "KING STUDIO — Celebrity Photography & Portrait Photography" },
       { name: "description", content: "Award-winning cinematic photography for weddings, portraits, fashion and lifestyle. Capturing moments that last forever." },
       { name: "author", content: "KING STUDIO" },

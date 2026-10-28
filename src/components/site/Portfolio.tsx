@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect, useCallback } from "react";
+import { useMemo, useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiX, FiChevronLeft, FiChevronRight, FiArrowRight } from "react-icons/fi";
 import { Reveal } from "./Reveal";
@@ -48,6 +48,7 @@ const cats = ["All", "Wedding", "Pre Wedding", "Portrait", "Nature", "Fashion", 
 export function Portfolio() {
   const [active, setActive] = useState("All");
   const [lightbox, setLightbox] = useState<number | null>(null);
+  const scroller = useRef<HTMLDivElement>(null);
 
   const filtered = useMemo(
     () => (active === "All" ? items : items.filter((i) => i.cat === active)),
@@ -63,6 +64,17 @@ export function Portfolio() {
     () => setLightbox((v) => (v === null ? null : (v - 1 + filtered.length) % filtered.length)),
     [filtered.length]
   );
+
+  const scroll = (dir: -1 | 1) => {
+    const el = scroller.current;
+    if (!el) return;
+    el.scrollBy({ left: dir * el.clientWidth * 0.82, behavior: "smooth" });
+  };
+
+  const pick = (c: string) => {
+    setActive(c);
+    scroller.current?.scrollTo({ left: 0, behavior: "smooth" });
+  };
 
   useEffect(() => {
     if (lightbox === null) return;
@@ -81,77 +93,117 @@ export function Portfolio() {
 
   return (
     <section id="portfolio" className="relative bg-cream py-20 text-ink-fg sm:py-24">
-      <div className="mx-auto max-w-[1400px] px-5 sm:px-8">
-        <Reveal className="flex flex-wrap items-end justify-between gap-8">
-          <div>
-            <p className="eyebrow text-tan-deep">Selected Work</p>
-            <h2 className="mt-4 font-display text-4xl leading-tight text-ink-fg sm:text-5xl">
-              A gallery of stories
+      <div className="mx-auto max-w-[1440px] px-5 sm:px-8">
+        <div className="grid gap-9 lg:grid-cols-[262px_minmax(0,1fr)] lg:items-end lg:gap-12 xl:gap-16">
+          <Reveal>
+            <div className="flex items-center gap-3">
+              <span className="h-px w-8 bg-gold-deep/50" />
+              <p className="eyebrow text-gold-deep">Selected Work</p>
+            </div>
+            <h2 className="mt-5 font-display text-[2.4rem] uppercase leading-[1.02] text-navy sm:text-[2.8rem]">
+              A Gallery
+              <br />
+              Of Stories
             </h2>
-            <p className="mt-4 max-w-xl text-[15px] text-ink-muted">
+            <p className="mt-6 max-w-[250px] text-[13px] leading-[1.75] text-ink-muted">
               A curated selection from recent weddings, editorials and journeys.
             </p>
-          </div>
-          <button
-            onClick={() => setActive("All")}
-            className="group flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-ink-fg transition hover:text-tan-deep"
-          >
-            View All Galleries
-            <FiArrowRight className="transition-transform duration-300 group-hover:translate-x-1" size={14} />
-          </button>
-        </Reveal>
-
-        <Reveal className="mt-12 flex flex-wrap gap-x-9 gap-y-3 border-b border-ink/10" delay={0.1}>
-          {cats.map((c) => (
             <button
-              key={c}
-              onClick={() => setActive(c)}
-              className={`relative pb-3 text-[11px] font-semibold uppercase tracking-[0.18em] transition-colors ${
-                active === c ? "text-tan-deep" : "text-ink-muted hover:text-ink-fg"
-              }`}
+              onClick={() => pick("All")}
+              className="group mt-7 inline-flex items-center gap-2.5 rounded-full border border-navy/20 px-5 py-2.5 text-[8.5px] uppercase tracking-[0.24em] text-navy transition-colors duration-300 hover:border-gold hover:bg-gold hover:text-navy"
             >
-              {c}
-              {active === c && (
-                <motion.span
-                  layoutId="portfolio-filter"
-                  className="absolute inset-x-0 -bottom-px h-[2px] bg-tan"
-                />
-              )}
+              View All Galleries
+              <FiArrowRight
+                size={11}
+                className="transition-transform duration-300 group-hover:translate-x-1"
+              />
             </button>
-          ))}
-        </Reveal>
+          </Reveal>
 
-        <motion.div layout className="mt-10 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-          <AnimatePresence mode="popLayout">
-            {filtered.map((item, idx) => (
-              <motion.button
-                key={item.src + idx + active}
-                layout
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.96 }}
-                transition={{ duration: 0.45, delay: idx * 0.03 }}
-                onClick={() => setLightbox(idx)}
-                className="group relative aspect-[3/4] overflow-hidden rounded-lg bg-ink"
-              >
-                <img
-                  src={item.src}
-                  alt={item.title || item.cat}
-                  loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.07]"
-                />
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink via-ink/55 to-transparent p-4 pb-5 text-left">
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-tan">{item.cat}</p>
-                  {item.title && (
-                    <h3 className="mt-1 font-display text-lg leading-tight text-white drop-shadow-[0_1px_6px_rgba(0,0,0,0.6)]">
-                      {item.title}
-                    </h3>
+          <Reveal delay={0.08} className="flex flex-col gap-6">
+            <div className="flex flex-wrap gap-x-6 gap-y-2.5">
+              {cats.map((c) => (
+                <button
+                  key={c}
+                  onClick={() => pick(c)}
+                  className={`relative pb-2 text-[9px] uppercase tracking-[0.2em] transition-colors ${
+                    active === c ? "text-navy" : "text-ink-muted hover:text-gold-deep"
+                  }`}
+                >
+                  {c}
+                  {active === c && (
+                    <motion.span
+                      layoutId="portfolio-filter"
+                      className="absolute inset-x-0 bottom-0 h-px bg-gold-deep"
+                    />
                   )}
-                </div>
-              </motion.button>
-            ))}
-          </AnimatePresence>
-        </motion.div>
+                </button>
+              ))}
+            </div>
+
+            <div className="flex items-center justify-between gap-4">
+              <span className="text-[9px] uppercase tracking-[0.26em] text-ink-muted">
+                {filtered.length} Projects
+              </span>
+              <div className="flex gap-2">
+                <button
+                  onClick={() => scroll(-1)}
+                  aria-label="Scroll portfolio left"
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-navy/20 text-navy transition-colors hover:border-gold hover:bg-gold"
+                >
+                  <FiChevronLeft size={15} />
+                </button>
+                <button
+                  onClick={() => scroll(1)}
+                  aria-label="Scroll portfolio right"
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-navy/20 text-navy transition-colors hover:border-gold hover:bg-gold"
+                >
+                  <FiChevronRight size={15} />
+                </button>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+
+        <div
+          ref={scroller}
+          className="no-scrollbar mt-9 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2"
+        >
+          {filtered.map((item, idx) => (
+            <motion.button
+              key={item.src + idx + active}
+              initial={{ opacity: 0, y: 22 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.5, delay: Math.min(idx, 5) * 0.04 }}
+              onClick={() => setLightbox(idx)}
+              className="group relative aspect-[3/4.35] w-[45%] shrink-0 snap-start overflow-hidden rounded-[4px] bg-navy sm:w-[29%] md:w-[22.5%] xl:w-[calc((100%-4rem)/5)]"
+            >
+              <img
+                src={item.src}
+                alt={item.title || item.cat}
+                loading="lazy"
+                className="h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.06]"
+              />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-navy via-navy/70 to-transparent" />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 px-4 pb-5 text-center">
+                {item.title && (
+                  <p className="font-display text-[12.5px] uppercase leading-tight tracking-[0.1em] text-white">
+                    {item.title}
+                  </p>
+                )}
+                <p
+                  className={`text-[8px] uppercase tracking-[0.24em] text-gold/85 ${
+                    item.title ? "mt-1.5" : ""
+                  }`}
+                >
+                  {item.cat}
+                </p>
+              </div>
+              <span className="pointer-events-none absolute inset-3 border border-gold/0 transition-colors duration-500 group-hover:border-gold/35" />
+            </motion.button>
+          ))}
+        </div>
       </div>
 
       <AnimatePresence>
@@ -160,22 +212,25 @@ export function Portfolio() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-ink/97 backdrop-blur-xl p-4"
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-navy/97 p-4 backdrop-blur-xl"
             onClick={close}
           >
             <button
               onClick={close}
-              className="absolute right-6 top-6 rounded-full border border-white/20 p-2 text-white transition hover:border-tan hover:text-tan"
+              className="absolute right-6 top-6 rounded-full border border-gold/30 p-2 text-white transition hover:border-gold hover:text-gold"
               aria-label="Close"
             >
-              <FiX size={24} />
+              <FiX size={22} />
             </button>
             <button
-              onClick={(e) => { e.stopPropagation(); prev(); }}
-              className="absolute left-4 rounded-full border border-white/20 p-3 text-white transition hover:border-tan hover:text-tan sm:left-8"
+              onClick={(e) => {
+                e.stopPropagation();
+                prev();
+              }}
+              className="absolute left-4 rounded-full border border-gold/30 p-3 text-white transition hover:border-gold hover:text-gold sm:left-8"
               aria-label="Previous"
             >
-              <FiChevronLeft size={24} />
+              <FiChevronLeft size={22} />
             </button>
             <motion.img
               key={lightbox}
@@ -188,13 +243,16 @@ export function Portfolio() {
               onClick={(e) => e.stopPropagation()}
             />
             <button
-              onClick={(e) => { e.stopPropagation(); next(); }}
-              className="absolute right-4 rounded-full border border-white/20 p-3 text-white transition hover:border-tan hover:text-tan sm:right-8"
+              onClick={(e) => {
+                e.stopPropagation();
+                next();
+              }}
+              className="absolute right-4 rounded-full border border-gold/30 p-3 text-white transition hover:border-gold hover:text-gold sm:right-8"
               aria-label="Next"
             >
-              <FiChevronRight size={24} />
+              <FiChevronRight size={22} />
             </button>
-            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-[10px] uppercase tracking-[0.3em] text-white/45">
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-[9px] uppercase tracking-[0.3em] text-white/45">
               {lightbox + 1} / {filtered.length} — {filtered[lightbox].title || filtered[lightbox].cat}
             </div>
           </motion.div>

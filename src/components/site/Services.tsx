@@ -98,8 +98,7 @@ export function Services() {
                       <FadeImage
                         src={s.image}
                         alt={s.title}
-                        className="h-full w-full"
-                        imgClassName="transition-transform duration-[1100ms] ease-out group-hover:scale-[1.07]"
+                        className="h-full w-full transition-transform duration-[1100ms] ease-out group-hover:scale-[1.07]"
                       />
                       <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-navy/75 via-navy/5 to-transparent" />
                     </div>

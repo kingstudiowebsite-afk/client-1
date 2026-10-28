@@ -182,8 +182,7 @@ export function Portfolio() {
               <FadeImage
                 src={item.src}
                 alt={item.title || item.cat}
-                className="h-full w-full"
-                imgClassName="transition-transform duration-[1200ms] ease-out group-hover:scale-[1.06]"
+                className="h-full w-full transition-transform duration-[1200ms] ease-out group-hover:scale-[1.06]"
               />
               <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-navy via-navy/70 to-transparent" />
               <div className="pointer-events-none absolute inset-x-0 bottom-0 px-4 pb-5 text-center">

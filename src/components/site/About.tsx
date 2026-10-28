@@ -1,4 +1,5 @@
 import { Reveal } from "./Reveal";
+import { FadeImage } from "./FadeImage";
 import about from "@/assets/hero1.jpg";
 import { FiAward, FiCamera, FiHeart, FiStar, FiArrowRight } from "react-icons/fi";
 
@@ -19,13 +20,10 @@ export function About() {
               className="relative h-[300px] overflow-hidden sm:h-[380px] lg:h-[420px]"
               style={{ clipPath: "polygon(0 0, 100% 0, 100% 84%, 0 100%)" }}
             >
-              <img
+              <FadeImage
                 src={about}
                 alt="Photographer portrait"
-                width={900}
-                height={1100}
-                loading="lazy"
-                className="h-full w-full object-cover"
+                className="h-full w-full"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-navy/10 to-transparent" />
             </div>

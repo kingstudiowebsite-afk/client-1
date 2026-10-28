@@ -1,4 +1,5 @@
 import { FiInstagram, FiArrowRight } from "react-icons/fi";
+import { FadeImage } from "./FadeImage";
 import p1 from "@/assets/p1.jpg";
 import p2 from "@/assets/p2.jpg";
 import p5 from "@/assets/p5.jpg";
@@ -47,11 +48,11 @@ export function InstagramStrip() {
               aria-label="Instagram"
               className="group relative aspect-square overflow-hidden bg-navy"
             >
-              <img
+              <FadeImage
                 src={src}
                 alt="Instagram post"
-                loading="lazy"
-                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                className="h-full w-full"
+                imgClassName="transition-transform duration-700 group-hover:scale-110"
               />
               <span className="pointer-events-none absolute inset-0 bg-navy/30 transition-opacity duration-500 group-hover:opacity-0" />
               <span className="pointer-events-none absolute inset-0 border border-gold/0 transition-colors duration-500 group-hover:border-gold/60" />

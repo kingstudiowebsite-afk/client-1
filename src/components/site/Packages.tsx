@@ -1,4 +1,5 @@
 import { FiCheck, FiCamera, FiClock, FiStar, FiAward } from "react-icons/fi";
+import { FadeImage } from "./FadeImage";
 import bandImage from "@/assets/about.jpg";
 
 const tiers = [
@@ -106,7 +107,11 @@ export function Packages() {
 
           {/* photo panel */}
           <div className="relative hidden xl:block">
-            <img src={bandImage} alt="Photographer at work" className="h-full w-full object-cover" />
+            <FadeImage
+              src={bandImage}
+              alt="Photographer at work"
+              className="h-full w-full"
+            />
             <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/30 to-transparent" />
             <div className="absolute inset-0 bg-gradient-to-t from-navy/70 to-transparent" />
           </div>

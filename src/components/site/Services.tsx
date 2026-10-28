@@ -1,6 +1,8 @@
 import { FiArrowRight, FiHeart, FiCamera, FiGift, FiUser, FiBox, FiFilm } from "react-icons/fi";
 import { TbDrone } from "react-icons/tb";
 import { Reveal } from "./Reveal";
+import { FadeImage } from "./FadeImage";
+import { useRevealOnScroll } from "./useRevealOnScroll";
 import p1 from "@/assets/p1.jpg";
 import p2 from "@/assets/p2.jpg";
 import p4 from "@/assets/p4.jpg";
@@ -55,6 +57,7 @@ const services = [
 ];
 
 export function Services() {
+  useRevealOnScroll();
   return (
     <section id="services" className="relative bg-cream py-20 text-ink-fg sm:py-24">
       <div className="mx-auto max-w-[1440px] px-5 sm:px-8">
@@ -84,16 +87,19 @@ export function Services() {
 
           <div className="grid grid-cols-2 gap-x-5 gap-y-10 sm:grid-cols-3 lg:grid-cols-7 lg:gap-x-3 xl:gap-x-4">
             {services.map((s, i) => (
-              <Reveal key={s.title} delay={i * 0.05}>
+              <div
+                key={s.title}
+                style={{ ["--reveal-delay" as string]: `${i * 60}ms` }}
+                className="reveal-up h-full"
+              >
                 <a href="#contact" className="group flex h-full flex-col">
                   <div className="relative">
                     <div className="relative aspect-[3/3.6] overflow-hidden bg-navy">
-                      <img
+                      <FadeImage
                         src={s.image}
                         alt={s.title}
-                        loading="lazy"
-                        decoding="async"
-                        className="h-full w-full object-cover opacity-95 transition-transform duration-[1100ms] ease-out group-hover:scale-[1.07]"
+                        className="h-full w-full"
+                        imgClassName="transition-transform duration-[1100ms] ease-out group-hover:scale-[1.07]"
                       />
                       <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-navy/75 via-navy/5 to-transparent" />
                     </div>
@@ -114,7 +120,7 @@ export function Services() {
                     />
                   </span>
                 </a>
-              </Reveal>
+              </div>
             ))}
           </div>
         </div>

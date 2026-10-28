@@ -2,6 +2,8 @@ import { useMemo, useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiX, FiChevronLeft, FiChevronRight, FiArrowRight } from "react-icons/fi";
 import { Reveal } from "./Reveal";
+import { FadeImage } from "./FadeImage";
+import { useRevealOnScroll } from "./useRevealOnScroll";
 import p1 from "@/assets/p1.jpg";
 import p2 from "@/assets/p2.jpg";
 import p3 from "@/assets/p3.jpg";
@@ -49,6 +51,7 @@ export function Portfolio() {
   const [active, setActive] = useState("All");
   const [lightbox, setLightbox] = useState<number | null>(null);
   const scroller = useRef<HTMLDivElement>(null);
+  useRevealOnScroll(active);
 
   const filtered = useMemo(
     () => (active === "All" ? items : items.filter((i) => i.cat === active)),
@@ -173,14 +176,14 @@ export function Portfolio() {
             <button
               key={item.src + idx + active}
               onClick={() => setLightbox(idx)}
-              className="group relative aspect-[3/4.35] w-[45%] shrink-0 snap-start overflow-hidden rounded-[4px] bg-navy sm:w-[29%] md:w-[22.5%] xl:w-[calc((100%-4rem)/5)]"
+              style={{ ["--reveal-delay" as string]: `${Math.min(idx, 6) * 60}ms` }}
+              className="reveal-up group relative aspect-[3/4.35] w-[45%] shrink-0 snap-start overflow-hidden rounded-[4px] bg-navy sm:w-[29%] md:w-[22.5%] xl:w-[calc((100%-4rem)/5)]"
             >
-              <img
+              <FadeImage
                 src={item.src}
                 alt={item.title || item.cat}
-                loading="lazy"
-                decoding="async"
-                className="h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.06]"
+                className="h-full w-full"
+                imgClassName="transition-transform duration-[1200ms] ease-out group-hover:scale-[1.06]"
               />
               <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-navy via-navy/70 to-transparent" />
               <div className="pointer-events-none absolute inset-x-0 bottom-0 px-4 pb-5 text-center">

@@ -10,7 +10,7 @@ import p5 from "@/assets/p5.jpg";
 import p6 from "@/assets/p6.jpg";
 import p7 from "@/assets/p7.jpeg";
 import p9 from "@/assets/p9.JPG";
-import p10 from "@/assets/p10.PNG";
+import p10 from "@/assets/p10.jpg";
 import p11 from "@/assets/p11.JPG";
 import p12 from "@/assets/p12.JPG";
 import p13 from "@/assets/p13.JPG";
@@ -170,12 +170,8 @@ export function Portfolio() {
           className="no-scrollbar mt-9 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2"
         >
           {filtered.map((item, idx) => (
-            <motion.button
+            <button
               key={item.src + idx + active}
-              initial={{ opacity: 0, y: 22 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.5, delay: Math.min(idx, 5) * 0.04 }}
               onClick={() => setLightbox(idx)}
               className="group relative aspect-[3/4.35] w-[45%] shrink-0 snap-start overflow-hidden rounded-[4px] bg-navy sm:w-[29%] md:w-[22.5%] xl:w-[calc((100%-4rem)/5)]"
             >
@@ -183,6 +179,7 @@ export function Portfolio() {
                 src={item.src}
                 alt={item.title || item.cat}
                 loading="lazy"
+                decoding="async"
                 className="h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.06]"
               />
               <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-navy via-navy/70 to-transparent" />
@@ -201,7 +198,7 @@ export function Portfolio() {
                 </p>
               </div>
               <span className="pointer-events-none absolute inset-3 border border-gold/0 transition-colors duration-500 group-hover:border-gold/35" />
-            </motion.button>
+            </button>
           ))}
         </div>
       </div>

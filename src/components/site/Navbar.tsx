@@ -92,7 +92,7 @@ export function Navbar() {
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         className={`border-b transition-all duration-500 ${
           scrolled
-            ? "border-gold/20 bg-navy/95 shadow-[0_24px_50px_-34px_rgba(0,0,0,0.95)] backdrop-blur-xl"
+            ? "border-gold/20 bg-navy shadow-[0_20px_40px_-32px_rgba(0,0,0,0.9)]"
             : "border-gold/10 bg-navy"
         }`}
       >

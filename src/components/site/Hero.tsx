@@ -7,15 +7,14 @@ const ease: [number, number, number, number] = [0.22, 1, 0.36, 1];
 export function Hero() {
   return (
     <section id="home" className="relative overflow-hidden bg-navy">
-      <motion.img
+      <img
         src={hero}
         alt="Cinematic photography hero"
         width={1920}
         height={1280}
-        initial={{ scale: 1.1 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 2.6, ease }}
-        className="absolute inset-0 h-full w-full object-cover object-[64%_center]"
+        decoding="async"
+        fetchPriority="high"
+        className="animate-hero-zoom absolute inset-0 h-full w-full object-cover object-[64%_center]"
       />
       <div className="absolute inset-0 bg-[linear-gradient(90deg,#070d1c_0%,rgba(7,13,28,0.95)_32%,rgba(7,13,28,0.62)_58%,rgba(7,13,28,0.12)_100%)]" />
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,13,28,0.88)_0%,rgba(7,13,28,0.15)_34%,rgba(7,13,28,0.72)_100%)]" />

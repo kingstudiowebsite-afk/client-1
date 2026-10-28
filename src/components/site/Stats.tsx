@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useInView } from "framer-motion";
 import { FiUsers, FiGrid, FiAward, FiStar } from "react-icons/fi";
 import hero from "@/assets/hero.jpg";
@@ -13,17 +13,16 @@ const stats = [
 function Counter({ end, suffix }: { end: number; suffix: string }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-40px" });
-  const [n, setN] = useState(0);
-
   useEffect(() => {
-    if (!inView) return;
-    const dur = 2000;
+    const el = ref.current;
+    if (!inView || !el) return;
+    const dur = 1600;
     const start = performance.now();
     let raf = 0;
     const tick = (t: number) => {
       const p = Math.min((t - start) / dur, 1);
       const eased = 1 - Math.pow(1 - p, 3);
-      setN(Math.floor(eased * end));
+      el.textContent = String(Math.floor(eased * end));
       if (p < 1) raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
@@ -31,8 +30,8 @@ function Counter({ end, suffix }: { end: number; suffix: string }) {
   }, [inView, end]);
 
   return (
-    <span ref={ref} className="font-display text-[2.3rem] leading-none text-white sm:text-[2.7rem]">
-      {n}
+    <span className="font-display text-[2.3rem] leading-none text-white sm:text-[2.7rem]">
+      <span ref={ref}>0</span>
       <span className="text-gold">{suffix}</span>
     </span>
   );

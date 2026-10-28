@@ -1,5 +1,5 @@
 import { Reveal } from "./Reveal";
-import about from "@/assets/hero1.png";
+import about from "@/assets/hero1.jpg";
 import { FiAward, FiCamera, FiHeart, FiStar, FiArrowRight } from "react-icons/fi";
 
 const cards = [

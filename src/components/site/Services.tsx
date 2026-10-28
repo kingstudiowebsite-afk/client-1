@@ -92,6 +92,7 @@ export function Services() {
                         src={s.image}
                         alt={s.title}
                         loading="lazy"
+                        decoding="async"
                         className="h-full w-full object-cover opacity-95 transition-transform duration-[1100ms] ease-out group-hover:scale-[1.07]"
                       />
                       <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-navy/75 via-navy/5 to-transparent" />

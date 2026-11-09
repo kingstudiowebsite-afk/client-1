@@ -38,3 +38,4 @@ shots/
 .opencode/
 .playwright-mcp/
 refs/
+scripts/__pycache__/

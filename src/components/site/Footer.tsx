@@ -10,7 +10,6 @@ const quickLinks = [
   { label: "About", href: "#about" },
   { label: "Portfolio", href: "#portfolio" },
   { label: "Services", href: "#services" },
-  { label: "Packages", href: "#packages" },
   { label: "Testimonials", href: "#testimonials" },
   { label: "Contact", href: "#contact" },
 ];
@@ -27,7 +26,6 @@ const serviceLinks = [
 
 const informationLinks = [
   { label: "FAQ", href: "#faq" },
-  { label: "Pricing & Packages", href: "#packages" },
   { label: "Booking Process", href: "#contact" },
   { label: "Testimonials", href: "#testimonials" },
   { label: "Contact", href: "#contact" },
